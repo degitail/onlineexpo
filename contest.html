@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>コンテストルール — Degitail Expo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html">展示作品</a><a href="ranking.html">投票TOP10</a><a href="contest.html" class="on">コンテストルール</a></nav>
+<header>
+  <h1>RULES</h1>
+  <p>投票バトル参加作品から TOP3 を決めます</p>
+  <div class="btns"><a class="btn primary apply" href="#">作品を応募する</a></div>
+</header>
+
+<main class="rules">
+  <h2>日程</h2>
+  <table>
+    <tr><th>募集・投票期間</th><td>2026年11月2日（月）〜 11月30日（月）23:59</td></tr>
+    <tr><th>結果発表</th><td>2026年12月1日（火）</td></tr>
+  </table>
+  <p>応募は期間中いつでもできます。運営が内容を確認してから掲載します（掲載まで最大1日ほどかかります）。</p>
+
+  <h2>参加方法</h2>
+  <p>応募フォームの「投票バトルに参加する」にチェックを入れた作品が対象です。チェックしない場合は展示のみとなり、順位はつきません。</p>
+
+  <h2>審査</h2>
+  <p>次の3つを <b>3：3：7</b> の割合で合計し、上位3作品を決めます。</p>
+  <table>
+    <tr><th>審査</th><th>割合</th><th>内容</th></tr>
+    <tr><td>Claude Code</td><td>3</td><td>AIが作品を実際に確認し、100点満点で採点</td></tr>
+    <tr><td>ChatGPT</td><td>3</td><td>AIが作品を実際に確認し、100点満点で採点</td></tr>
+    <tr><td>来場者の投票</td><td>7</td><td>投票ポイントが最も多い作品を100点として換算</td></tr>
+  </table>
+  <p>Claude Code と ChatGPT は、互いの採点理由を見せ合って協議したうえで最終点を出します。採点の観点は「アイデア」「完成度」「生成AIの使い方」の3つです。</p>
+
+  <h2>投票</h2>
+  <ul>
+    <li>投票は各作品のページの「投票する」から。Googleアカウント1つにつき1作品まで</li>
+    <li>11月30日 23:59 を過ぎた票は数えません</li>
+    <li>不正な投票（同じ人による複数アカウントでの投票など）が見つかった場合、その票を無効にします</li>
+  </ul>
+
+  <h2>早く出した作品だけが有利にならないために</h2>
+  <p>早く掲載された作品ほど票を集める時間が長くなります。そこで、<b>作品が掲載されてから日がたつほど、1票の重みを小さくします</b>。重みは7日ごとに半分になります。</p>
+  <table>
+    <tr><th>掲載からの日数</th><th>1票の重み</th></tr>
+    <tr><td>当日</td><td>1.00</td></tr>
+    <tr><td>7日後</td><td>0.50</td></tr>
+    <tr><td>14日後</td><td>0.25</td></tr>
+    <tr><td>21日後</td><td>0.13</td></tr>
+  </table>
+  <p>1票ごとの重みを足したものを「投票ポイント」とし、投票TOP10もこの順で並べます。作品ページの右上に出る数字は、重みをかける前の票数です。</p>
+
+  <h2>同点のとき</h2>
+  <p>重みをかける前の票数が多い作品を上位とします。</p>
+</main>
+
+<footer>© 2026 Degitail Expo</footer>
+<script src="apps.js"></script>
+<script src="bg.js"></script>
+</body>
+</html>

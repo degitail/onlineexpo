@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Degitail Expo — 生成AIで作ったアプリの展示会</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html" class="on">展示作品</a><a href="ranking.html">投票TOP10</a><a href="contest.html">コンテストルール</a></nav>
+<header>
+  <h1>Degitail Expo</h1>
+  <p>生成AIで作ったアプリの展示会 ／ 募集・投票 2026.11.2 – 11.30 ／ 結果発表 12.1</p>
+  <div class="btns">
+    <a class="btn primary" href="#apps">作品を見る</a>
+    <a class="btn apply" href="#">作品を応募する</a>
+  </div>
+</header>
+
+<main>
+  <h2 id="apps">展示作品（表示順はランダム）</h2>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>© 2026 Degitail Expo</footer>
+<script src="data.js"></script>
+<script src="apps.js"></script>
+<script src="bg.js"></script>
+<script src="count.js"></script>
+<script>
+// 開くたびにシャッフル（Fisher–Yates）
+const list = [...APPS];
+for (let i = list.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [list[i], list[j]] = [list[j], list[i]];
+}
+render(list);
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>投票TOP10 — Degitail Expo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><a href="index.html">展示作品</a><a href="ranking.html" class="on">投票TOP10</a><a href="contest.html">コンテストルール</a></nav>
+<header>
+  <h1>TOP 10</h1>
+  <p>投票バトル参加作品の上位10作品。投票は各作品のページから（1人1作品）</p>
+</header>
+
+<main>
+  <h2>投票ランキング</h2>
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer>© 2026 Degitail Expo</footer>
+<script src="data.js"></script>
+<script src="apps.js"></script>
+<script src="bg.js"></script>
+<script src="count.js"></script>
+<script>
+render(APPS.filter(a => a.battle).sort((a, b) => b.pts - a.pts || b.votes - a.votes).slice(0, 10), true);
+</script>
+</body>
+</html>

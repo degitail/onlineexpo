@@ -9,8 +9,10 @@ header { padding:64px 24px 40px; text-align:center; border-bottom:3px solid var(
 header h1 { margin:0; font-size:clamp(36px,7vw,72px); letter-spacing:.06em; }
 header p { color:var(--sub); margin:8px 0 24px; }
 .btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+.btn { font:inherit; font-weight:bold; cursor:pointer; background:none; color:var(--ink); }
 .btn { display:inline-block; padding:10px 22px; border:2px solid var(--ink); text-decoration:none; font-weight:bold; }
 .btn.primary { background:var(--ink); color:var(--bg); }
+.btn:disabled { opacity:.5; cursor:default; }
 .btn:hover { background:var(--ink); color:var(--bg); }
 main { max-width:1100px; margin:0 auto; padding:0 20px 80px; }
 h2 { font-size:20px; margin:40px 0 16px; border-left:6px solid var(--ink); padding-left:10px; }

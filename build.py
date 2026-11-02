@@ -9,8 +9,6 @@ from PIL import Image, ImageOps
 
 ROOT = Path(__file__).parent
 SITE_URL = os.environ.get("SITE_URL", "").rstrip("/")         # 例 https://xxx.github.io/degitail-expo
-VOTE_FORM = os.environ.get("VOTE_FORM", "")                    # 投票フォームの viewform URL
-VOTE_ENTRY = os.environ.get("VOTE_ENTRY", "")                  # 作品ID欄の entry.xxxx
 # フォームの質問文（シートの見出し）。フォームの文言を変えたらここも変える
 COL = dict(time="タイムスタンプ", title="作品名", by="ハンドルネーム", desc="プロジェクト概要",
            images="画像", video="動画", youtube="YouTube URL", link="リンク", sns="SNSアカウント",
@@ -115,7 +113,6 @@ def entry(row):
 def page(a):
     h = html.escape
     abs_ = lambda p: f"{SITE_URL}/{p}" if SITE_URL else f"../{p}"
-    vote = f"{VOTE_FORM}?usp=pp_url&{VOTE_ENTRY}={a['id']}" if VOTE_FORM else "#"
     share = "https://x.com/intent/post?text=" + urllib.parse.quote(
         f"{a['title']} / {a['by']} #DegitailExpo {SITE_URL}/w/{a['id']}.html")
     if a["yt"]:
@@ -130,7 +127,7 @@ def page(a):
         sns = f'<a href="https://x.com/{h(a["sns"].lstrip("@"))}" target="_blank" rel="noopener">{sns}</a>'
     elif safe_url(a["sns"]):
         sns = f'<a href="{sns}" target="_blank" rel="noopener">{sns}</a>'
-    vote_btn = f'<a class="btn primary" href="{h(vote)}" target="_blank" rel="noopener">投票する</a>' if a["battle"] else ""
+    vote_btn = f'<button class="btn primary vote" data-id="{a['id']}">投票する</button>' if a["battle"] else ""
     count = f'<span class="count" data-n="{a["votes"]}">{a["votes"]}票</span>' if a["battle"] else ""
     try_btn = f'<a class="btn primary" href="{h(a["url"])}" target="_blank" rel="noopener">体験する</a>' if a["url"] else ""
     return f"""<!doctype html>
@@ -160,6 +157,7 @@ def page(a):
 <script src="../viewers.js"></script>
 <script src="../bg.js"></script>
 <script src="../count.js"></script>
+<script src="../vote.js"></script>
 </body>
 </html>
 """

@@ -84,3 +84,10 @@
 - GitHub（degitail/onlineexpo, main）へ初回 push。試験用の展示データ（w/ media/ data.js sample/）も含めて公開（ユーザー判断）
 - .gitignore で _backup_*/ と references/（他サイトのスクショ）を除外
 - 次：Settings→Pages で公開元を main / (root) に。Secrets 未設定のため、毎時の Actions は失敗する（SETUP.md の設定後に解消）
+
+---
+2026-11-03 / Claude Code
+- apps.js の APPLY_URL に応募フォームを設定
+- 投票を Googleフォームから「サイト内のボタン → Apps Script → スプレッドシート」に変更（ユーザー判断）。gas/vote.gs・vote.js を追加、build.py と Actions から VOTE_FORM/VOTE_ENTRY を削除
+- 1人1票は localStorage のみ（別端末・シークレットで再投票できる）。締切後はボタンを無効化
+- 次：投票シート作成と Apps Script の公開（SETUP.md 手順2）→ VOTE_API を設定して push

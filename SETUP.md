@@ -17,11 +17,13 @@
 - 「回答」タブ → スプレッドシートにリンク。シートの右端に見出し「掲載」の列を足し、チェックボックスにする。チェックした作品だけが載る
 - ファイル添付があるため、応募者はGoogleログインが必要になる
 
-## 2. 投票フォーム
-- 質問は1つ「作品ID」（記述式）。設定で「回答を1回に制限する」をオン
-- 右上「︙」→「事前入力したURLを取得」→ 作品IDに `test` と入れてリンクをコピー
-  - `…/viewform?usp=pp_url&entry.123456=test` の `…/viewform` が VOTE_FORM、`entry.123456` が VOTE_ENTRY
-- 回答をスプレッドシートにリンクする
+## 2. 投票の受け口（Apps Script）
+サイトの「投票する」ボタンが、ここに作品IDを送る。
+1. 新しいスプレッドシートを作り、1行目に「タイムスタンプ」「作品ID」と入れる
+2. 拡張機能 → Apps Script → `gas/vote.gs` の中身を貼って保存
+3. デプロイ → 新しいデプロイ → 種類「ウェブアプリ」、実行ユーザー「自分」、アクセス「全員」→ デプロイ（初回は権限の許可を求められる）
+4. 表示された URL（…/exec）を `vote.js` の `VOTE_API` に入れる
+- 1人1票はブラウザの記録で止めているだけ。別端末やシークレットウィンドウからは再投票できる
 
 ## 3. サービスアカウント（シートを読むためのロボット用アカウント）
 1. Google Cloud Console でプロジェクトを作り、「Google Drive API」を有効にする
@@ -35,7 +37,6 @@
    - Variables：
      - `ENTRY_SHEET`：応募シートのID（URLの `/d/` と `/edit` の間）。2枚目以降のシートなら `ID:gid`
      - `VOTE_SHEET`：投票シートのID
-     - `VOTE_FORM` / `VOTE_ENTRY`：手順2の値
      - `SITE_URL`：例 `https://ユーザー名.github.io/リポジトリ名`
 3. Settings → Pages → 「Deploy from a branch」→ main / root
 4. Actions タブ → build →「Run workflow」で初回実行

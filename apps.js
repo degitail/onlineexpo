@@ -1,5 +1,5 @@
 // 応募フォームの URL（フォームを作ったら差し替える）。作品データ APPS は data.js（build.py が生成）
-const APPLY_URL = "#";
+const APPLY_URL = "https://docs.google.com/forms/d/e/1FAIpQLScEji_qMJN-BxBYaiNHoy4ybokrVzFev1Lb0x0jSaS6IVyVNw/viewform";
 
 document.querySelectorAll(".apply").forEach(a => a.href = APPLY_URL);
 

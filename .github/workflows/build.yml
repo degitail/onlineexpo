@@ -18,8 +18,6 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           ENTRY_SHEET: ${{ vars.ENTRY_SHEET }}
           VOTE_SHEET: ${{ vars.VOTE_SHEET }}
-          VOTE_FORM: ${{ vars.VOTE_FORM }}
-          VOTE_ENTRY: ${{ vars.VOTE_ENTRY }}
           SITE_URL: ${{ vars.SITE_URL }}
       - run: |
           git config user.name github-actions

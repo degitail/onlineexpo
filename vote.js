@@ -1,6 +1,6 @@
 // 投票：Apps Script の URL（gas/vote.gs を公開したら差し替える）
 // ponytail: 1人1票はブラウザの記録だけで止めている。別端末・シークレットなら再投票できる
-const VOTE_API = "";
+const VOTE_API = "https://script.google.com/macros/s/AKfycbx_gxGqy6cIcCTMm6ZjeX77fixzrtL7_Y8kA0vWkdjWTirFDra_Jn88qDqsszFp8Tl36Q/exec";
 const DEADLINE = new Date("2026-11-30T23:59:59+09:00");
 
 document.querySelectorAll(".vote").forEach(b => {

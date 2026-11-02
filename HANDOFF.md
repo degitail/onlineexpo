@@ -78,3 +78,9 @@
 - 投票ポイント：1票の重み＝0.5^(掲載からの日数/7)。締切（11/30 23:59）後の票は数えない（build.py の DEADLINE / HALF_LIFE）。TOP10もポイント順、同点は素の票数
 - 掲載日はフォームのタイムスタンプで代用（承認までの遅れは考慮していない）
 - 未解決：漫画翻訳の動画にONE PIECEの原画（公開前に差し替え判断）。AI採点は手作業（集計スクリプトなし）。プレビュー用ブラウザに接続できず、見た目は未確認
+
+---
+2026-11-02（3回目） / Claude Code
+- GitHub（degitail/onlineexpo, main）へ初回 push。試験用の展示データ（w/ media/ data.js sample/）も含めて公開（ユーザー判断）
+- .gitignore で _backup_*/ と references/（他サイトのスクショ）を除外
+- 次：Settings→Pages で公開元を main / (root) に。Secrets 未設定のため、毎時の Actions は失敗する（SETUP.md の設定後に解消）

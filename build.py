@@ -45,7 +45,7 @@ def read_rows(src):
         text = Path(src).read_text(encoding="utf-8-sig")
     else:
         # Sheets API で読む（CSV書き出しは転送先で400になるため使わない）。「ID:gid」ならそのタブ、IDだけなら1枚目
-        sid, _, gid = src.partition(":")
+        sid, _, gid = (s.strip() for s in src.partition(":"))
         api = f"https://sheets.googleapis.com/v4/spreadsheets/{sid}"
         rng = "A:ZZ"
         if gid:

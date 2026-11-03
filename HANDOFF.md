@@ -97,3 +97,10 @@
 - シート読み込みを Sheets API に変更（CSV書き出しは転送先で400）。GCPで Sheets API の有効化が必要。Actions は「Re-run」ではなく「Run workflow」で最新を試すこと（結果待ち）
 - flyer/qr.png・qr.svg：サイトのQRコード（segno をインストールして作成）
 - ルール：審査比率を 3：3：4（投票40%、投票ポイントに従う）に変更。重みづけの説明はページから削除（build.py の計算は継続、非公開ルール）
+
+---
+2026-11-03（3回目） / Claude Code
+- 本番の自動反映が成功（試しの応募1件が掲載）。つまずき：①CSV書き出しは400→Sheets APIへ ②変数末尾の改行→strip ③Drive API未有効で画像DLが403→有効化
+- build.py は結果と [skip] 理由を Actions の注釈（::notice:: / ::error::）に出す。注釈は公開APIで読める（ログ本体はログイン必須）
+- ENTRY_SHEET は「ID:gid」形式で登録済み
+- ポートフォリオ6作品は一覧から外れた（media/ w/ は残存）。戻し方は未決定（フォームから応募 or 運営枠の仕組み）

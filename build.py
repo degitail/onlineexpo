@@ -40,12 +40,19 @@ def google():
     return _session
 
 def read_rows(src):
-    """src はローカルの CSV パス、またはシートID"""
+    """src はローカルの CSV パス、またはシートID（「ID:gid」でタブ指定）"""
     if Path(src).exists():
         text = Path(src).read_text(encoding="utf-8-sig")
     else:
-        # Sheets API で1枚目のタブを読む（CSV書き出しは転送先で400になるため使わない）
-        r = google().get(f"https://sheets.googleapis.com/v4/spreadsheets/{src.split(':')[0]}/values/A:ZZ")
+        # Sheets API で読む（CSV書き出しは転送先で400になるため使わない）。「ID:gid」ならそのタブ、IDだけなら1枚目
+        sid, _, gid = src.partition(":")
+        api = f"https://sheets.googleapis.com/v4/spreadsheets/{sid}"
+        rng = "A:ZZ"
+        if gid:
+            tabs = google().get(api, params={"fields": "sheets.properties(sheetId,title)"}).json()["sheets"]
+            title = next(t["properties"]["title"] for t in tabs if str(t["properties"]["sheetId"]) == gid)
+            rng = "'" + title.replace("'", "''") + "'!A:ZZ"
+        r = google().get(f"{api}/values/{urllib.parse.quote(rng)}")
         r.raise_for_status()
         head, *body = r.json().get("values", [[]])
         return [dict(zip(head, row + [""] * (len(head) - len(row)))) for row in body]

@@ -35,7 +35,7 @@
 2. Settings → Secrets and variables → Actions
    - Secrets：`GOOGLE_CREDENTIALS` に JSON 鍵の中身を丸ごと貼る
    - Variables：
-     - `ENTRY_SHEET`：応募シートのID（URLの `/d/` と `/edit` の間）。2枚目以降のシートなら `ID:gid`
+     - `ENTRY_SHEET`：応募シートのID（URLの `/d/` と `/edit` の間）。回答のタブを1枚目（いちばん左）に置く
      - `VOTE_SHEET`：投票シートのID
      - `SITE_URL`：例 `https://ユーザー名.github.io/リポジトリ名`
 3. Settings → Pages → 「Deploy from a branch」→ main / root

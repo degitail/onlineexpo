@@ -39,12 +39,13 @@ def google():
     return _session
 
 def read_rows(src):
-    """src はローカルの CSV パス、または「シートID:gid」"""
+    """src はローカルの CSV パス、またはシートID"""
     if Path(src).exists():
         text = Path(src).read_text(encoding="utf-8-sig")
     else:
-        sid, gid = (src.split(":") + ["0"])[:2]
-        r = google().get(f"https://docs.google.com/spreadsheets/d/{sid}/export?format=csv&gid={gid}")
+        # Drive API の書き出しは1枚目のタブだけ（フォームの回答タブを1枚目に置く）
+        r = google().get(f"https://www.googleapis.com/drive/v3/files/{src.split(':')[0]}/export",
+                         params={"mimeType": "text/csv"})
         r.raise_for_status()
         text = r.content.decode("utf-8")
     return list(csv.DictReader(io.StringIO(text)))

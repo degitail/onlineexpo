@@ -47,3 +47,7 @@ a.card { display:block; text-decoration:none; }
 .rules th, .rules td { border:2px solid var(--ink); padding:8px 12px; text-align:left; }
 .rules th { background:var(--ink); color:var(--bg); }
 .note { font-size:12px; color:var(--sub); }
+.reviews { margin-top:40px; }
+.review { background:var(--pale); border:2px solid var(--ink); padding:12px 16px; margin-bottom:12px; }
+.review h3 { margin:0 0 4px; font-size:15px; }
+.review p { margin:0; white-space:pre-wrap; }

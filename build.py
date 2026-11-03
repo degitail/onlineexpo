@@ -126,6 +126,19 @@ def entry(row):
                 sns=row.get(COL["sns"], "").strip(), votes=0, pts=0, start=row[COL["time"]].strip(),
                 battle=bool(row.get(COL["battle"], "").strip()))  # チェックすると選択肢の文字が入る
 
+def load_reviews():
+    """reviews.csv（作品ID, Claude Code, ChatGPT）。運営が手で足す"""
+    p = ROOT / "reviews.csv"
+    return {r["作品ID"].strip(): r for r in csv.DictReader(p.open(encoding="utf-8-sig"))} if p.exists() else {}
+
+REVIEWS = load_reviews()
+
+def review_html(a):
+    r = REVIEWS.get(a["id"], {})
+    items = "".join(f'<div class="review"><h3>{who}</h3><p>{html.escape(r[who].strip())}</p></div>'
+                    for who in ("Claude Code", "ChatGPT") if r.get(who, "").strip())
+    return f'<section class="reviews"><h2>AI講評</h2>{items or "<p>講評準備中</p>"}</section>'
+
 def page(a):
     h = html.escape
     abs_ = lambda p: f"{SITE_URL}/{p}" if SITE_URL else f"../{p}"
@@ -167,6 +180,7 @@ def page(a):
   <div class="meta">作者：{h(a['by'])} ／ {sns}</div>
   <p class="desc">{h(a['desc'])}</p>
   <div class="btns">{try_btn}{vote_btn}<a class="btn" href="{h(share)}" target="_blank" rel="noopener">Xでシェア</a></div>
+  {review_html(a)}
   <div class="gallery">{gallery}</div>
 </main>
 <footer>© 2026 Degitail Expo</footer>

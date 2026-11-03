@@ -108,3 +108,8 @@
 ---
 2026-11-03（4回目） / Claude Code
 - contest.html に賞品を追加：1位5,000円・2位3,000円・3位2,000円（Amazonギフトカード）。連絡はSNSアカウントへ、Amazon商標の注記つき
+
+---
+2026-11-04 / Claude Code
+- AI講評の仕組み：reviews.csv（作品ID, Claude Code, ChatGPT）を build.py が読み、作品ページに「AI講評」欄を出す。未記入は「講評準備中」。中身は未作成（ユーザー判断で仕組みだけ先行）
+- 講評の作り方の案：Claude Code が作品を読んで書く／ChatGPT は Codex CLI（read-only）に依頼

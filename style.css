@@ -46,3 +46,4 @@ a.card { display:block; text-decoration:none; }
 .rules table { border-collapse:collapse; width:100%; background:var(--pale); margin:8px 0 16px; }
 .rules th, .rules td { border:2px solid var(--ink); padding:8px 12px; text-align:left; }
 .rules th { background:var(--ink); color:var(--bg); }
+.note { font-size:12px; color:var(--sub); }

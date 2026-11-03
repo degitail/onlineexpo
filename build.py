@@ -60,6 +60,7 @@ def read_rows(src):
         r = google().get(f"{api}/values/{urllib.parse.quote(rng)}")
         r.raise_for_status()
         head, *body = r.json().get("values", [[]])
+        head = [h.strip() for h in head]
         return [dict(zip(head, row + [""] * (len(head) - len(row)))) for row in body]
     return list(csv.DictReader(io.StringIO(text)))
 
@@ -112,7 +113,7 @@ def entry(row):
         try:
             make_media(eid, imgs, video[0] if video else "", out)
         except Exception as err:
-            print(f"[skip] {row[COL['title']]}: {err}", file=sys.stderr)
+            print(f"::error::[skip] {row[COL['title']]}: {err!r}")  # ::error:: は Actions の注釈に出る
             shutil.rmtree(out, ignore_errors=True)  # 途中まで作ったフォルダを残さない
             return None
     n = len(list(out.glob("[0-9]*.jpg")))
@@ -181,7 +182,7 @@ def main():
     entries_src = args[0] if args else os.environ["ENTRY_SHEET"]
     votes_src = args[1] if len(args) > 1 else os.environ.get("VOTE_SHEET", "")
     all_rows = read_rows(entries_src)
-    print(f"応募シート：{len(all_rows)} 行、見出し {list(all_rows[0]) if all_rows else []}")
+    print(f"::notice::応募シート：{len(all_rows)} 行、見出し {list(all_rows[0]) if all_rows else []}")
     rows = [r for r in all_rows if r.get(COL["ok"], "").strip().upper() in ("TRUE", "1", "済")]
     apps = [a for a in map(entry, rows) if a]
     if votes_src:
@@ -198,7 +199,7 @@ def main():
         (ROOT / "w" / f"{a['id']}.html").write_text(page(a), encoding="utf-8")
     data = json.dumps(apps, ensure_ascii=False, indent=1).replace("</", "<\\/")
     (ROOT / "data.js").write_text(f"// build.py が生成。手で編集しない\nconst APPS = {data};\n", encoding="utf-8")
-    print(f"{len(apps)} 作品を反映（変換に失敗 {len(rows) - len(apps)} 件）")
+    print(f"::notice::{len(apps)} 作品を反映（変換に失敗 {len(rows) - len(apps)} 件）")
 
 if __name__ == "__main__":
     main()

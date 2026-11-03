@@ -34,7 +34,8 @@ def google():
         from google.auth.transport.requests import AuthorizedSession
         info = json.loads(os.environ["GOOGLE_CREDENTIALS"])
         cred = service_account.Credentials.from_service_account_info(
-            info, scopes=["https://www.googleapis.com/auth/drive.readonly"])
+            info, scopes=["https://www.googleapis.com/auth/drive.readonly",
+                    "https://www.googleapis.com/auth/spreadsheets.readonly"])
         _session = AuthorizedSession(cred)
     return _session
 
@@ -43,11 +44,11 @@ def read_rows(src):
     if Path(src).exists():
         text = Path(src).read_text(encoding="utf-8-sig")
     else:
-        # Drive API の書き出しは1枚目のタブだけ（フォームの回答タブを1枚目に置く）
-        r = google().get(f"https://www.googleapis.com/drive/v3/files/{src.split(':')[0]}/export",
-                         params={"mimeType": "text/csv"})
+        # Sheets API で1枚目のタブを読む（CSV書き出しは転送先で400になるため使わない）
+        r = google().get(f"https://sheets.googleapis.com/v4/spreadsheets/{src.split(':')[0]}/values/A:ZZ")
         r.raise_for_status()
-        text = r.content.decode("utf-8")
+        head, *body = r.json().get("values", [[]])
+        return [dict(zip(head, row + [""] * (len(head) - len(row)))) for row in body]
     return list(csv.DictReader(io.StringIO(text)))
 
 def fetch(ref, dst):

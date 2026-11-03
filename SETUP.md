@@ -26,7 +26,7 @@
 - 1人1票はブラウザの記録で止めているだけ。別端末やシークレットウィンドウからは再投票できる
 
 ## 3. サービスアカウント（シートを読むためのロボット用アカウント）
-1. Google Cloud Console でプロジェクトを作り、「Google Drive API」を有効にする
+1. Google Cloud Console でプロジェクトを作り、「Google Drive API」と「Google Sheets API」を有効にする
 2. 「IAMと管理」→「サービスアカウント」を作成 →「鍵」→ JSON を作成してダウンロード
 3. 応募シート・投票シート・フォームの添付が入るDriveフォルダを、そのアカウントのメールアドレス（…@….iam.gserviceaccount.com）に「閲覧者」で共有する
 

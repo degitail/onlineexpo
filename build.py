@@ -52,7 +52,10 @@ def read_rows(src):
             r = google().get(api, params={"fields": "sheets.properties(sheetId,title)"})
             r.raise_for_status()
             tabs = r.json()["sheets"]
-            title = next(t["properties"]["title"] for t in tabs if str(t["properties"]["sheetId"]) == gid)
+            names = {str(t["properties"]["sheetId"]): t["properties"]["title"] for t in tabs}
+            if gid not in names:
+                sys.exit(f"シート {sid} に gid={gid} のタブがない。あるタブ：{names}")
+            title = names[gid]
             rng = "'" + title.replace("'", "''") + "'!A:ZZ"
         r = google().get(f"{api}/values/{urllib.parse.quote(rng)}")
         r.raise_for_status()

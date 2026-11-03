@@ -49,7 +49,9 @@ def read_rows(src):
         api = f"https://sheets.googleapis.com/v4/spreadsheets/{sid}"
         rng = "A:ZZ"
         if gid:
-            tabs = google().get(api, params={"fields": "sheets.properties(sheetId,title)"}).json()["sheets"]
+            r = google().get(api, params={"fields": "sheets.properties(sheetId,title)"})
+            r.raise_for_status()
+            tabs = r.json()["sheets"]
             title = next(t["properties"]["title"] for t in tabs if str(t["properties"]["sheetId"]) == gid)
             rng = "'" + title.replace("'", "''") + "'!A:ZZ"
         r = google().get(f"{api}/values/{urllib.parse.quote(rng)}")
@@ -175,7 +177,9 @@ def main():
     args = sys.argv[1:]
     entries_src = args[0] if args else os.environ["ENTRY_SHEET"]
     votes_src = args[1] if len(args) > 1 else os.environ.get("VOTE_SHEET", "")
-    rows = [r for r in read_rows(entries_src) if r.get(COL["ok"], "").strip().upper() in ("TRUE", "1", "済")]
+    all_rows = read_rows(entries_src)
+    print(f"応募シート：{len(all_rows)} 行、見出し {list(all_rows[0]) if all_rows else []}")
+    rows = [r for r in all_rows if r.get(COL["ok"], "").strip().upper() in ("TRUE", "1", "済")]
     apps = [a for a in map(entry, rows) if a]
     if votes_src:
         by_id = {a["id"]: a for a in apps if a["battle"]}

@@ -91,3 +91,9 @@
 - 投票を Googleフォームから「サイト内のボタン → Apps Script → スプレッドシート」に変更（ユーザー判断）。gas/vote.gs・vote.js を追加、build.py と Actions から VOTE_FORM/VOTE_ENTRY を削除
 - 1人1票は localStorage のみ（別端末・シークレットで再投票できる）。締切後はボタンを無効化
 - 次：投票シート作成と Apps Script の公開（SETUP.md 手順2）→ VOTE_API を設定して push
+
+---
+2026-11-03（2回目） / Claude Code
+- シート読み込みを Sheets API に変更（CSV書き出しは転送先で400）。GCPで Sheets API の有効化が必要。Actions は「Re-run」ではなく「Run workflow」で最新を試すこと（結果待ち）
+- flyer/qr.png・qr.svg：サイトのQRコード（segno をインストールして作成）
+- ルール：審査比率を 3：3：4（投票40%、投票ポイントに従う）に変更。重みづけの説明はページから削除（build.py の計算は継続、非公開ルール）

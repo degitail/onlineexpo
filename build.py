@@ -69,7 +69,8 @@ def fetch(ref, dst):
     m = re.search(r"[?&]id=([\w-]+)|/d/([\w-]+)", ref)
     if m:
         r = google().get(f"https://www.googleapis.com/drive/v3/files/{m[1] or m[2]}?alt=media")
-        r.raise_for_status()
+        if not r.ok:
+            raise RuntimeError(f"{r.status_code} {r.text[:400]}")
         dst.write_bytes(r.content)
     else:
         dst.write_bytes((ROOT / ref).read_bytes())

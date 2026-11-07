@@ -6,6 +6,8 @@
   document.body.prepend(c);
   let drops = [];
   const resize = () => {
+    // スマホはスクロールでアドレスバーが動いて高さだけ変わる。そこで描き直すと数字が消えるので無視する
+    if (c.width === innerWidth && c.height >= innerHeight) return;
     c.width = innerWidth; c.height = innerHeight;
     drops = Array.from({ length: Math.ceil(c.width / S) }, () => -Math.random() * 100);
   };

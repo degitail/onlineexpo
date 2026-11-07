@@ -1,7 +1,6 @@
 // 最初の画面：作品サムネの丸がふわふわ動く。タップで一覧へ。同じ訪問中は1回だけ
 (() => {
   if (sessionStorage.getItem("entered")) return;
-  const still = matchMedia("(prefers-reduced-motion: reduce)").matches; // 動きを減らす設定の人には止めて見せる
   const intro = document.createElement("button");
   intro.id = "intro";
   intro.innerHTML = `<span class="intro-title"><strong>Degitail Expo</strong><small>生成AIで作ったアプリの展示会</small><em>タップして入場</em></span>`;
@@ -33,8 +32,7 @@
     });
     requestAnimationFrame(move);
   };
-  orbs.forEach(place);
-  if (!still) move();
+  move();
 
   intro.onclick = () => {
     open = false;

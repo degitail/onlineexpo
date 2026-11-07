@@ -1,6 +1,5 @@
 // 背景：白い数字が縦に流れる（映画マトリックス風）。各列はランダムな間隔で流れ始める
 (() => {
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return; // 動きを減らす設定の人には出さない
   const c = document.createElement("canvas"), g = c.getContext("2d"), S = 18;
   c.id = "bg";
   document.body.prepend(c);

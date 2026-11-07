@@ -75,5 +75,23 @@ const APPS = [
   "pts": 0,
   "start": "2026/11/07 20:49:54",
   "battle": true
+ },
+ {
+  "id": "94580e84",
+  "title": "レポサポ",
+  "by": "レポサポ",
+  "desc": "大学生のコメントシート、レポート作成補助アプリ",
+  "short": "大学生のコメントシート、レポート作成補助アプリ",
+  "imgs": [
+   "media/94580e84/1.jpg"
+  ],
+  "video": "",
+  "yt": "",
+  "url": "https://madebymoha-repo-komento-flow.com/?utm_source=ig&utm_medium=social&utm_content=link_in_bio&fbclid=PAb21jcAVcGEhleHRuA2FlbQIxMQBwZG9mAnNydGMGYXBwX2lkDzU2NzA2NzM0MzM1MjQyNwABpzOvd1iACU3Owc1hT5lJ4aQOCCkO9uAltHnhiWLJk0BafEaPRt9rYE6O-hY9_aem_RKCFIZE0IE0-aF1rFx9G4g",
+  "sns": "https://www.instagram.com/reposapo?xtok=MW9ob2g3eWRibnp5Zw==",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/07 23:43:42",
+  "battle": true
  }
 ];

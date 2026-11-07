@@ -18,7 +18,7 @@
     g.fillRect(0, 0, c.width, c.height);
     g.globalCompositeOperation = "source-over";
     g.fillStyle = "#fff";
-    g.font = `${S - 2}px Consolas, monospace`;
+    g.font = `${S - 2}px DotGothic16, Consolas, monospace`;
     drops.forEach((y, i) => {
       if (y >= 0) g.fillText(Math.floor(Math.random() * 10), i * S, y * S);
       // 画面下まで来たら、しばらく休んでからまた上から流す

@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DotGothic16&display=swap");
 :root { --bg:#9fd8f5; --pale:#d6effb; --ink:#000; --sub:#2a3a44; }
 * { box-sizing:border-box; }
 body { margin:0; background:var(--bg); color:var(--ink); font-family:"メイリオ",Meiryo,sans-serif; line-height:1.7; }
@@ -58,3 +59,5 @@ body.intro > :not(#intro, #bg, script) { display:none; }
 .review { background:var(--pale); border:2px solid var(--ink); padding:12px 16px; margin-bottom:12px; }
 .review h3 { margin:0 0 4px; font-size:15px; }
 .review p { margin:0; white-space:pre-wrap; }
+/* ピクセル風：見出し・メニュー・ボタンだけ。本文は読みやすさ優先でメイリオのまま */
+h1, h2, h3, nav, .btn, .count, .intro-title, #status { font-family:"DotGothic16","メイリオ",Meiryo,sans-serif; }

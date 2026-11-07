@@ -57,5 +57,23 @@ const APPS = [
   "pts": 0,
   "start": "2026/11/04 20:08:42",
   "battle": true
+ },
+ {
+  "id": "d6a334a7",
+  "title": "四柱推命 AI鑑定",
+  "by": "masa&tomo",
+  "desc": "生年月日から四柱推命の命式を計算し、AIが鑑定文を作成するWebアプリです。50代後半・プログラミング未経験から、生成AIと試行錯誤しながら作りました。",
+  "short": "生年月日から四柱推命の命式を計算し、AIが鑑定文を作成するWebアプリです。50",
+  "imgs": [
+   "media/d6a334a7/1.jpg"
+  ],
+  "video": "",
+  "yt": "",
+  "url": "https://project-cp9kg.vercel.app/",
+  "sns": "@yoruwan",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/07 20:49:54",
+  "battle": true
  }
 ];

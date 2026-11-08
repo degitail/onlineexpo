@@ -139,6 +139,11 @@ def review_html(a):
                     for who in ("Claude Code", "ChatGPT") if r.get(who, "").strip())
     return f'<section class="reviews"><h2>AI講評</h2>{items or "<p>講評準備中</p>"}</section>'
 
+def linkify(text):
+    """本文を HTML にし、中の URL をリンクにする。全角文字（「」。など）の手前で URL を切る"""
+    return re.sub(r"https?://[^\s<>\"'\u3000-\uffff]+",
+                  lambda m: f'<a href="{m[0]}" target="_blank" rel="noopener">{m[0]}</a>', html.escape(text))
+
 def page(a):
     h = html.escape
     abs_ = lambda p: f"{SITE_URL}/{p}" if SITE_URL else f"../{p}"
@@ -152,8 +157,8 @@ def page(a):
         hero = f'<img src="../{a["imgs"][0]}" alt="">' if a["imgs"] else ""
     gallery = "".join(f'<img src="../{p}" alt="" loading="lazy">' for p in a["imgs"])
     sns = h(a["sns"])
-    if re.match(r"@?\w{1,15}$", a["sns"]):
-        sns = f'<a href="https://x.com/{h(a["sns"].lstrip("@"))}" target="_blank" rel="noopener">{sns}</a>'
+    if re.match(r"@[\w.]{1,30}$", a["sns"]):  # 「@名前」だけなら Threads のユーザー名として扱う
+        sns = f'<a href="https://www.threads.com/{h(a["sns"])}" target="_blank" rel="noopener">{sns}</a>'
     elif safe_url(a["sns"]):
         sns = f'<a href="{sns}" target="_blank" rel="noopener">{sns}</a>'
     vote_btn = f'<button class="btn primary vote" data-id="{a['id']}">投票する</button>' if a["battle"] else ""
@@ -178,7 +183,7 @@ def page(a):
   <p class="viewers" data-id="{a['id']}"></p>
   <h1>{h(a['title'])}</h1>
   <div class="meta">作者：{h(a['by'])} ／ {sns}</div>
-  <p class="desc">{h(a['desc'])}</p>
+  <p class="desc">{linkify(a['desc'])}</p>
   <div class="btns">{try_btn}{vote_btn}<a class="btn" href="{h(share)}" target="_blank" rel="noopener">Xでシェア</a></div>
   {review_html(a)}
   <div class="gallery">{gallery}</div>
@@ -202,13 +207,16 @@ def main():
     apps = [a for a in map(entry, rows) if a]
     if votes_src:
         by_id = {a["id"]: a for a in apps if a["battle"]}
-        for r in read_rows(votes_src):
+        vrows = read_rows(votes_src)
+        for r in vrows:
             a, t = by_id.get(r.get(COL["vote_id"], "").strip()), when(r[COL["time"]])
             if a and t <= DEADLINE:
                 a["votes"] += 1
                 a["pts"] += vote_weight(when(a["start"]), t)
         for a in apps:
             a["pts"] = round(a["pts"], 2)
+        n = sum(a["votes"] for a in apps)
+        print(f"::notice::投票シート：{len(vrows)} 行、集計 {n} 票（締切後・掲載外の作品への票 {len(vrows) - n} 件は除外）")
     (ROOT / "w").mkdir(exist_ok=True)
     for a in apps:
         (ROOT / "w" / f"{a['id']}.html").write_text(page(a), encoding="utf-8")

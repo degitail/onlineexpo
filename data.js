@@ -115,5 +115,43 @@ const APPS = [
   "pts": 0,
   "start": "2026/11/08 12:17:32",
   "battle": true
+ },
+ {
+  "id": "10cb01f8",
+  "title": "サッと家計簿",
+  "by": "たい焼き",
+  "desc": "スーパー早く家計簿をつけられるアプリです！",
+  "short": "スーパー早く家計簿をつけられるアプリです！",
+  "imgs": [],
+  "video": "media/10cb01f8/v.mp4",
+  "yt": "",
+  "url": "",
+  "sns": "",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/08 17:20:53",
+  "battle": true
+ },
+ {
+  "id": "e6e1b27d",
+  "title": "飲みゲー横丁",
+  "by": "Shigeaki Shimada",
+  "desc": "スマホ1台を回して遊ぶ飲み会ゲーム5本（爆弾パス・乾杯チンチロ・乾杯すごろく・乾杯ミッション・おじさん危機一髪）を1つにまとめたアプリ。企画から実装までをClaude（Claude Code）と対話しながら構築し、チンチロは器の中で実際に転がる物理シミュレーションを自作、3DキャラはTripo、アイコンやサムネイルはGemini（Nano Banana）で生成。ブラウザ版を用意したのでインストール不要でそのまま遊べます（スマホで開くと全画面）。iPhone版はApp Store審査中。通信不要・ログイン／広告／課金なし。",
+  "short": "スマホ1台を回して遊ぶ飲み会ゲーム5本（爆弾パス・乾杯チンチロ・乾杯すごろく・乾",
+  "imgs": [
+   "media/e6e1b27d/1.jpg",
+   "media/e6e1b27d/2.jpg",
+   "media/e6e1b27d/3.jpg",
+   "media/e6e1b27d/4.jpg",
+   "media/e6e1b27d/5.jpg"
+  ],
+  "video": "media/e6e1b27d/v.mp4",
+  "yt": "",
+  "url": "https://nomige-yokocho-play.vercel.app",
+  "sns": "calpediem_design",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/08 21:16:06",
+  "battle": true
  }
 ];

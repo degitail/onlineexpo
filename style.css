@@ -61,3 +61,7 @@ body.intro > :not(#intro, #bg, script) { display:none; }
 .review p { margin:0; white-space:pre-wrap; }
 /* ピクセル風：見出し・メニュー・ボタンだけ。本文は読みやすさ優先でメイリオのまま */
 h1, h2, h3, nav, .btn, .count, .intro-title, #status { font-family:"DotGothic16","メイリオ",Meiryo,sans-serif; }
+.ticker { background:var(--ink); color:#ffb000; overflow:hidden; white-space:nowrap; border-top:2px solid #333; font-family:"DotGothic16",monospace; font-size:18px; padding:6px 0; text-shadow:0 0 6px #ff8c00; }
+.ticker #status { display:inline-flex; animation:ticker 40s linear infinite; }
+@keyframes ticker { from { transform:translateX(-50%); } to { transform:translateX(0); } }
+.new { position:absolute; top:0; left:0; z-index:1; background:linear-gradient(135deg,#f7e08a,#d4a72c 55%,#a8801a); color:var(--ink); font-family:"DotGothic16",sans-serif; font-weight:bold; font-size:15px; padding:4px 12px; border:2px solid var(--ink); }

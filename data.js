@@ -93,5 +93,27 @@ const APPS = [
   "pts": 0,
   "start": "2026/11/07 23:43:42",
   "battle": true
+ },
+ {
+  "id": "22724ffc",
+  "title": "マイ就活ノート",
+  "by": "管理人h",
+  "desc": "説明会、ES締切、面接の日程。 企業ごとの年収や福利厚生、志望度まで。  バラバラになりがちな就活の情報をまとめて管理できるiPhoneアプリ",
+  "short": "説明会、ES締切、面接の日程。 企業ごとの年収や福利厚生、志望度まで。  バラバ",
+  "imgs": [
+   "media/22724ffc/1.jpg",
+   "media/22724ffc/2.jpg",
+   "media/22724ffc/3.jpg",
+   "media/22724ffc/4.jpg",
+   "media/22724ffc/5.jpg"
+  ],
+  "video": "",
+  "yt": "",
+  "url": "https://apps.apple.com/us/app/%E3%83%9E%E3%82%A4%E5%B0%B1%E6%B4%BB%E3%83%8E%E3%83%BC%E3%83%88/id6822704891",
+  "sns": "kanrininh",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/08 12:17:32",
+  "battle": true
  }
 ];

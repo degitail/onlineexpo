@@ -127,8 +127,8 @@ const APPS = [
   "yt": "",
   "url": "",
   "sns": "",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.94,
   "start": "2026/11/08 17:20:53",
   "battle": true
  },

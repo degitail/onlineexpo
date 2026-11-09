@@ -142,3 +142,9 @@
 - build.py：投票シートの読込行数と集計票数を Actions の注釈（::notice::）に出す。投票の確認はこの注釈と投票シートの行数を突き合わせる
 - 投票確認（11/8）：受付の Apps Script は応答OK、毎時の Actions も成功、公開中の票数は全作品0。投票シートは見られなかったので「0票が正しいか」は未確認
 - reviews.csv：テスト以外の4作品に AI講評を記入。Claude Code は作品サイトを読んで執筆、ChatGPT は Codex CLI（read-only）に依頼（依頼文と出力は work\_codex_review\）
+
+---
+2026-11-09 / Claude Code
+- reviews.csv：追加3作品（マイ就活ノート、サッと家計簿、飲みゲー横丁）の AI講評を記入。Claude Code は掲載画像・紹介動画・App Store の説明・飲みゲー横丁のブラウザ版トップを確認して執筆、ChatGPT は Codex CLI に依頼
+- 未解決：マイ就活ノートの体験リンクが米国版 App Store の URL で 404（日本版は開ける）。応募者の URL なのでシート側の修正待ち
+- 未解決：飲みゲー横丁は説明が5本、ブラウザ版トップは「4つの飲みゲー」

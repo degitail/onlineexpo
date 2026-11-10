@@ -53,8 +53,8 @@ const APPS = [
   "yt": "UOUIQ4fGzRU",
   "url": "https://wordspellmaster.com/lp",
   "sns": "https://x.com/wordspellmaster",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.56,
   "start": "2026/11/04 20:08:42",
   "battle": true
  },

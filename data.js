@@ -149,8 +149,8 @@ const APPS = [
   "yt": "",
   "url": "https://nomige-yokocho-play.vercel.app",
   "sns": "calpediem_design",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.81,
   "start": "2026/11/08 21:16:06",
   "battle": true
  }

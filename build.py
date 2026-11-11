@@ -161,7 +161,7 @@ def page(a):
         sns = f'<a href="https://www.threads.com/{h(a["sns"])}" target="_blank" rel="noopener">{sns}</a>'
     elif safe_url(a["sns"]):
         sns = f'<a href="{sns}" target="_blank" rel="noopener">{sns}</a>'
-    vote_btn = f'<button class="btn primary vote" data-id="{a['id']}">投票する</button>' if a["battle"] else ""
+    vote_btn = f'<button class="btn primary vote" data-id="{a['id']}" data-title="{h(a['title'])}">投票する</button>' if a["battle"] else ""
     count = f'<span class="count" data-n="{a["votes"]}">{a["votes"]}票</span>' if a["battle"] else ""
     try_btn = f'<a class="btn primary" href="{h(a["url"])}" target="_blank" rel="noopener">体験する</a>' if a["url"] else ""
     return f"""<!doctype html>
@@ -205,6 +205,7 @@ def main():
     print(f"::notice::応募シート：{len(all_rows)} 行、見出し {list(all_rows[0]) if all_rows else []}")
     rows = [r for r in all_rows if r.get(COL["ok"], "").strip().upper() in ("TRUE", "1", "済")]
     apps = [a for a in map(entry, rows) if a]
+    recent = []  # 電光掲示板に流す直近の票
     if votes_src:
         by_id = {a["id"]: a for a in apps if a["battle"]}
         vrows = read_rows(votes_src)
@@ -213,6 +214,7 @@ def main():
             if a and t <= DEADLINE:
                 a["votes"] += 1
                 a["pts"] += vote_weight(when(a["start"]), t)
+                recent.append((t, a["title"]))
         for a in apps:
             a["pts"] = round(a["pts"], 2)
         n = sum(a["votes"] for a in apps)
@@ -221,7 +223,9 @@ def main():
     for a in apps:
         (ROOT / "w" / f"{a['id']}.html").write_text(page(a), encoding="utf-8")
     data = json.dumps(apps, ensure_ascii=False, indent=1).replace("</", "<\\/")
-    (ROOT / "data.js").write_text(f"// build.py が生成。手で編集しない\nconst APPS = {data};\n", encoding="utf-8")
+    recent_js = json.dumps([dict(t=t.strftime("%m/%d %H:%M"), title=x) for t, x in sorted(recent)[-5:][::-1]],
+                           ensure_ascii=False).replace("</", "<\\/")
+    (ROOT / "data.js").write_text(f"// build.py が生成。手で編集しない\nconst APPS = {data};\nconst RECENT = {recent_js};\n", encoding="utf-8")
     print(f"::notice::{len(apps)} 作品を反映（変換に失敗 {len(rows) - len(apps)} 件）")
 
 if __name__ == "__main__":

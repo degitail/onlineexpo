@@ -41,7 +41,9 @@ render(list);
 const left = Math.ceil((new Date("2026-11-30T23:59:59+09:00") - Date.now()) / 864e5);
 const when = left > 1 ? `募集・投票の締切まであと${left}日` : left === 1 ? "募集・投票は本日締切" : "募集・投票は終了しました";
 // 電光掲示板：同じ文を2組並べ、半分ずらす動きを繰り返して切れ目なく流す
-const msg = `現在 ${APPS.length}作品 展示中　／　${when}　　　　`.repeat(4);
+const esc = s => s.replace(/[&<>"]/g, c => `&#${c.charCodeAt(0)};`);
+const votes = (typeof RECENT === "undefined" ? [] : RECENT).map(v => `　／　${v.t} 「${esc(v.title)}」に1票`).join("");
+const msg = `現在 ${APPS.length}作品 展示中　／　${when}${votes}　　　　`.repeat(votes ? 2 : 4);
 document.getElementById("status").innerHTML = `<span>${msg}</span><span>${msg}</span>`;
 </script>
 </body>

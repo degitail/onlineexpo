@@ -7,13 +7,15 @@
   document.body.classList.add("intro");
   document.body.append(intro);
 
-  // 展示中でサムネのある作品をすべて出す。21個目からは数に応じて丸を小さくし、画面が埋まらないようにする
-  const list = APPS.filter(a => a.imgs[0]);
+  // 展示中の作品をすべて出す（画像がなければ動画、それもなければ作品名）。21個目からは数に応じて丸を小さくする
+  const list = APPS;
   const R = () => Math.max(16, Math.min(innerWidth, innerHeight) * .11 * Math.min(1, Math.sqrt(20 / list.length))); // 丸の半径
   const orbs = list.map(a => {
     const el = document.createElement("span");
     el.className = "orb";
-    el.style.backgroundImage = `url(${a.imgs[0]})`;
+    if (a.imgs[0]) el.style.backgroundImage = `url(${a.imgs[0]})`;
+    else if (a.video) el.append(Object.assign(document.createElement("video"), { src:a.video, muted:true, autoplay:true, loop:true, playsInline:true }));
+    else el.textContent = a.title;
     intro.prepend(el);
     return { el, x:Math.random(), y:Math.random(), dir:Math.random() * 6.28, speed:.4 + Math.random() * .5, r:R() * (.7 + Math.random() * .5) };
   });

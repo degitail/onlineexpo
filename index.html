@@ -21,6 +21,9 @@
 
 <main>
   <h2 id="apps">展示作品（表示順はランダム）</h2>
+  <div class="filter">
+    <button class="btn on" data-f="">すべて</button><button class="btn" data-f="web">ブラウザで開ける</button><button class="btn" data-f="battle">投票できる</button>
+  </div>
   <div class="grid" id="grid"></div>
 </main>
 
@@ -36,6 +39,11 @@ for (let i = list.length - 1; i > 0; i--) {
   [list[i], list[j]] = [list[j], list[i]];
 }
 render(list);
+document.querySelectorAll(".filter button").forEach(b => b.onclick = () => {
+  document.querySelector(".filter .on").classList.remove("on");
+  b.classList.add("on");
+  document.getElementById("grid").dataset.f = b.dataset.f;
+});
 
 // 締切までの残り日数（当日を含む）と作品数
 const left = Math.ceil((new Date("2026-11-30T23:59:59+09:00") - Date.now()) / 864e5);

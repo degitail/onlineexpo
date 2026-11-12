@@ -144,7 +144,18 @@ def linkify(text):
     return re.sub(r"https?://[^\s<>\"'\u3000-\uffff]+",
                   lambda m: f'<a href="{m[0]}" target="_blank" rel="noopener">{m[0]}</a>', html.escape(text))
 
-def page(a):
+def next_html(nxt):
+    """ページの最後に置く「ほかの作品」カード"""
+    if not nxt:
+        return ""
+    h = html.escape
+    cards = "".join(
+        f'<a class="card" href="{b["id"]}.html"><div class="thumb"'
+        + (f' style="background-image:url(../{b["imgs"][0]})">' if b["imgs"] else f'>{h(b["title"])}')
+        + f'</div><div class="body"><h3>{h(b["title"])}</h3><p>{h(b["short"])}</p></div></a>' for b in nxt)
+    return f'<section class="next"><h2>ほかの作品も見る</h2><div class="grid">{cards}</div></section>'
+
+def page(a, nxt=()):
     h = html.escape
     abs_ = lambda p: f"{SITE_URL}/{p}" if SITE_URL else f"../{p}"
     share = "https://x.com/intent/post?text=" + urllib.parse.quote(
@@ -187,12 +198,14 @@ def page(a):
   <div class="btns">{try_btn}{vote_btn}<a class="btn" href="{h(share)}" target="_blank" rel="noopener">Xでシェア</a></div>
   {review_html(a)}
   <div class="gallery">{gallery}</div>
+  {next_html(nxt)}
 </main>
 <footer>© 2026 Degitail Expo</footer>
 <script src="../viewers.js"></script>
 <script src="../bg.js"></script>
 <script src="../count.js"></script>
 <script src="../vote.js"></script>
+<script src="../gallery.js"></script>
 </body>
 </html>
 """
@@ -220,8 +233,9 @@ def main():
         n = sum(a["votes"] for a in apps)
         print(f"::notice::投票シート：{len(vrows)} 行、集計 {n} 票（締切後・掲載外の作品への票 {len(vrows) - n} 件は除外）")
     (ROOT / "w").mkdir(exist_ok=True)
-    for a in apps:
-        (ROOT / "w" / f"{a['id']}.html").write_text(page(a), encoding="utf-8")
+    for i, a in enumerate(apps):  # 次の作品は応募順で隣の3つ（最後まで行ったら先頭へ）
+        nxt = [apps[(i + k) % len(apps)] for k in range(1, min(4, len(apps)))]
+        (ROOT / "w" / f"{a['id']}.html").write_text(page(a, nxt), encoding="utf-8")
     data = json.dumps(apps, ensure_ascii=False, indent=1).replace("</", "<\\/")
     recent_js = json.dumps([dict(t=t.strftime("%m/%d %H:%M"), title=x) for t, x in sorted(recent)[-5:][::-1]],
                            ensure_ascii=False).replace("</", "<\\/")

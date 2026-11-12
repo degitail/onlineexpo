@@ -21,6 +21,8 @@ function render(list, rank) {
       // スマホ：画面に入ったら再生
       new IntersectionObserver(([e]) => e.isIntersecting ? v.play() : v.pause(), { threshold:.6 }).observe(card);
     }
+    if (isWeb(a)) { card.dataset.web = 1; t.insertAdjacentHTML("beforeend", `<span class="web">ブラウザで開ける</span>`); }
+    if (a.battle) card.dataset.battle = 1;
     if (isNew(a)) t.insertAdjacentHTML("beforeend", `<span class="new">NEW</span>`);
     if (a.battle) t.insertAdjacentHTML("beforeend", `<span class="count" data-n="${a.votes}">${a.votes}票</span>`);
     card.querySelector("h3").textContent = (rank ? `${i + 1}位　` : "") + a.title;
@@ -29,6 +31,9 @@ function render(list, rank) {
     document.getElementById("grid").append(card);
   });
 }
+
+// リンクがあり、アプリストアではない＝インストールなしで開ける
+const isWeb = a => a.url && !/apps\.apple\.com|play\.google\.com/.test(a.url);
 
 // 掲載（フォーム送信）から3日以内か。start は「2026/11/03 7:07:45」形式の日本時間
 function isNew(a) {

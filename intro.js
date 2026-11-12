@@ -25,7 +25,7 @@
   const cv = document.createElement("canvas");
   cv.className = "edges";
   intro.prepend(cv);
-  const g = cv.getContext("2d"), PX = 8; // 四角の大きさ
+  const g = cv.getContext("2d"), PX = 5; // 四角の大きさ
   const fit = () => { cv.width = innerWidth; cv.height = innerHeight; };
   fit(); addEventListener("resize", fit);
   orbs.forEach(o => o.jit = Array.from({ length: Math.ceil(o.r * 2 * Math.PI / PX) }, () => 0));

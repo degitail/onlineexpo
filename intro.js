@@ -7,8 +7,10 @@
   document.body.classList.add("intro");
   document.body.append(intro);
 
-  const R = () => Math.max(36, Math.min(innerWidth, innerHeight) * .11); // 丸の半径
-  const orbs = APPS.filter(a => a.imgs[0]).sort(() => Math.random() - .5).slice(0, 20).map(a => {
+  // 展示中でサムネのある作品をすべて出す。21個目からは数に応じて丸を小さくし、画面が埋まらないようにする
+  const list = APPS.filter(a => a.imgs[0]);
+  const R = () => Math.max(16, Math.min(innerWidth, innerHeight) * .11 * Math.min(1, Math.sqrt(20 / list.length))); // 丸の半径
+  const orbs = list.map(a => {
     const el = document.createElement("span");
     el.className = "orb";
     el.style.backgroundImage = `url(${a.imgs[0]})`;

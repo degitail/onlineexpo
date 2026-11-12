@@ -31,11 +31,11 @@
   orbs.forEach(o => o.jit = Array.from({ length: Math.ceil(o.r * 2 * Math.PI / PX) }, () => 0));
   const edges = () => {
     g.clearRect(0, 0, cv.width, cv.height);
-    g.fillStyle = "#000";
+    g.fillStyle = "#d6effb"; // 背景より薄い水色（style.css の --pale）
     orbs.forEach(o => {
       const cx = o.x + o.r, cy = o.y + o.r, n = o.jit.length;
       o.jit.forEach((j, i) => {
-        if (Math.random() < .08) o.jit[i] = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 マス
+        if (Math.random() < .02) o.jit[i] = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 マス
         const a = i / n * 6.283, d = o.r + o.jit[i] * PX;
         // マス目にそろえて置く（ドット絵の格子）
         g.fillRect(Math.round((cx + Math.cos(a) * d) / PX) * PX - PX / 2, Math.round((cy + Math.sin(a) * d) / PX) * PX - PX / 2, PX, PX);

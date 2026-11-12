@@ -40,7 +40,7 @@
     g.clearRect(0, 0, o.cv.width, o.cv.height);
     g.fillStyle = "#9fd8f5"; // 背景と同じ色（style.css の --bg）。薄い水色に戻すなら #d6effb
     o.jit.forEach((j, i) => {
-      if (Math.random() < .02) o.jit[i] = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 マス
+      if (Math.random() < .005) o.jit[i] = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 マス
       const a = i / n * 6.283, d = o.r + o.jit[i] * PX;
       g.fillRect(Math.round((cx + Math.cos(a) * d) / PX) * PX - PX / 2 - ox, Math.round((cy + Math.sin(a) * d) / PX) * PX - PX / 2 - oy, PX, PX);
     });

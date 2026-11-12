@@ -21,6 +21,28 @@
   });
   orbs.forEach(o => { o.x *= innerWidth - o.r * 2; o.y *= innerHeight - o.r * 2; o.el.style.width = o.el.style.height = `${o.r * 2}px`; });
 
+  // 縁：小さな四角を円周に並べ、ときどき内外に1マスずれさせてデジタルっぽくチラつかせる
+  const cv = document.createElement("canvas");
+  cv.className = "edges";
+  intro.prepend(cv);
+  const g = cv.getContext("2d"), PX = 4; // 四角の大きさ
+  const fit = () => { cv.width = innerWidth; cv.height = innerHeight; };
+  fit(); addEventListener("resize", fit);
+  orbs.forEach(o => o.jit = Array.from({ length: Math.ceil(o.r * 2 * Math.PI / PX) }, () => 0));
+  const edges = () => {
+    g.clearRect(0, 0, cv.width, cv.height);
+    g.fillStyle = "#000";
+    orbs.forEach(o => {
+      const cx = o.x + o.r, cy = o.y + o.r, n = o.jit.length;
+      o.jit.forEach((j, i) => {
+        if (Math.random() < .08) o.jit[i] = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 マス
+        const a = i / n * 6.283, d = o.r + o.jit[i] * PX;
+        // マス目にそろえて置く（ドット絵の格子）
+        g.fillRect(Math.round((cx + Math.cos(a) * d) / PX) * PX - PX / 2, Math.round((cy + Math.sin(a) * d) / PX) * PX - PX / 2, PX, PX);
+      });
+    });
+  };
+
   let open = true;
   const place = o => o.el.style.transform = `translate(${o.x}px,${o.y}px)`;
   const move = () => {
@@ -34,6 +56,7 @@
       if (o.y < 0 || o.y > maxY) { o.dir = -o.dir; o.y = Math.min(Math.max(o.y, 0), maxY); }
       place(o);
     });
+    edges();
     requestAnimationFrame(move);
   };
   move();

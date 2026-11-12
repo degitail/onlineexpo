@@ -31,7 +31,7 @@
   orbs.forEach(o => o.jit = Array.from({ length: Math.ceil(o.r * 2 * Math.PI / PX) }, () => 0));
   const edges = () => {
     g.clearRect(0, 0, cv.width, cv.height);
-    g.fillStyle = "#d6effb"; // 背景より薄い水色（style.css の --pale）
+    g.fillStyle = "#9fd8f5"; // 背景と同じ色（style.css の --bg）。薄い水色に戻すなら #d6effb
     orbs.forEach(o => {
       const cx = o.x + o.r, cy = o.y + o.r, n = o.jit.length;
       o.jit.forEach((j, i) => {

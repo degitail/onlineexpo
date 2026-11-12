@@ -13,8 +13,8 @@ const APPS = [
   "yt": "",
   "url": "https://degitail.github.io/yoshi-portfolio/",
   "sns": "https://www.threads.com/@degitaillab?igshid=NTc4MTIwNjQ2YQ==",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.42,
   "start": "2026/11/03 16:48:36",
   "battle": true
  },
@@ -151,6 +151,43 @@ const APPS = [
   "pts": 0.85,
   "start": "2026/11/10 18:21:08",
   "battle": true
+ },
+ {
+  "id": "0594b83b",
+  "title": "CourtDeck",
+  "by": "nakyatsukuruapp",
+  "desc": "バスケットボールのプレー図（作戦ボード）を作るWebアプリです。FIBA・NBA・B.LEAGUEなどのコートに選手・ボール・動きの線を描き、フレームごとに動かしてアニメーションで再生できます。作ったプレーはライブラリにためて全画面で続けて見せられ、PNGやPDF（プレイブック）で書き出せます（書き出しはPro）。企画から実装まで、Claude CodeなどのAIと一緒に個人で開発しました。Web版のほか、iPad版をApp Storeで公開しています。",
+  "short": "バスケットボールのプレー図（作戦ボード）を作るWebアプリです。FIBA・NBA",
+  "imgs": [],
+  "video": "",
+  "yt": "",
+  "url": "https://courtdeck.app",
+  "sns": "https://www.threads.com/@nakyatsukuruapp",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/12 14:50:28",
+  "battle": true
+ },
+ {
+  "id": "66ee5ee0",
+  "title": "Your Persona",
+  "by": "kei",
+  "desc": "個人の開発者でリリース前のHUTなどが実施できない人向けに、実際の統計に基づいた日本人の大規模データセットを活用し、疑似的にA/Bテストなどを行えるシステムです。",
+  "short": "個人の開発者でリリース前のHUTなどが実施できない人向けに、実際の統計に基づいた",
+  "imgs": [
+   "media/66ee5ee0/1.jpg",
+   "media/66ee5ee0/2.jpg",
+   "media/66ee5ee0/3.jpg",
+   "media/66ee5ee0/4.jpg"
+  ],
+  "video": "media/66ee5ee0/v.mp4",
+  "yt": "",
+  "url": "https://degitail.github.io/yoshidotfun-degitail-/workshop.html#reserve",
+  "sns": "degitaillab",
+  "votes": 0,
+  "pts": 0,
+  "start": "2026/11/12 18:26:53",
+  "battle": true
  }
 ];
-const RECENT = [{"t": "11/12 08:38", "title": "脆弱チェッカー"}, {"t": "11/11 00:20", "title": "飲みゲー横丁"}, {"t": "11/10 15:51", "title": "Word Spell Master"}, {"t": "11/09 08:34", "title": "サッと家計簿"}];
+const RECENT = [{"t": "11/12 11:08", "title": "ディスプレイ水槽"}, {"t": "11/12 08:38", "title": "脆弱チェッカー"}, {"t": "11/11 00:20", "title": "飲みゲー横丁"}, {"t": "11/10 15:51", "title": "Word Spell Master"}, {"t": "11/09 08:34", "title": "サッと家計簿"}];

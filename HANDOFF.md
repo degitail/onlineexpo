@@ -164,3 +164,7 @@
 - 追記：入口の丸を展示中の全作品に（上限20を撤廃）。21作品目から丸を小さくする。画像なしは動画、動画もなければ作品名を表示
 - 追記：入口の丸の縁を、5pxの四角がチラつくドット風に（intro.js の edges、canvas 1枚）。四角の大きさは PX、ずれる頻度は .005、色は背景と同じ #9fd8f5（前は #d6effb）
 - 追記：縁の canvas を丸ごとに分け、丸の直後に置いた。重なると手前の丸が奥の丸の縁を隠す
+
+## 2026-11-13（Claude Code）
+- reviews.csv：未講評4作品（脆弱チェッカー、CourtDeck、Your Persona、3コマ食堂）の AI講評を記入。ChatGPT は Codex CLI（依頼文 prompt3.txt、出力 out3.txt、追記 add_reviews3.py は work\_codex_review\）
+- 次：UI/UX改善案10個を提示済み、選択待ち

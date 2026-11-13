@@ -35,8 +35,8 @@ const APPS = [
   "yt": "UOUIQ4fGzRU",
   "url": "https://wordspellmaster.com/lp",
   "sns": "https://x.com/wordspellmaster",
-  "votes": 1,
-  "pts": 0.56,
+  "votes": 2,
+  "pts": 0.98,
   "start": "2026/11/04 20:08:42",
   "battle": true
  },
@@ -184,10 +184,26 @@ const APPS = [
   "yt": "",
   "url": "https://degitail.github.io/yoshidotfun-degitail-/workshop.html#reserve",
   "sns": "degitaillab",
+  "votes": 1,
+  "pts": 0.92,
+  "start": "2026/11/12 18:26:53",
+  "battle": true
+ },
+ {
+  "id": "f5f743e2",
+  "title": "3コマ食堂",
+  "by": "ま、いいじゃん",
+  "desc": "飲食店のSNS用に作った小さなツールです。写真と短い動画を3コマ（素材→調理→完成）に入れて、文字を書いて、縦型MP4を書き出すだけ。編集で止まってしまう店向けに、やることを減らしました。最初の3本は無料で書き出せます。",
+  "short": "飲食店のSNS用に作った小さなツールです。写真と短い動画を3コマ（素材→調理→完",
+  "imgs": [],
+  "video": "",
+  "yt": "",
+  "url": "https://koma3-shokudo.atomfilm-kobe.chatgpt.site",
+  "sns": "Threads @maiijan_ai",
   "votes": 0,
   "pts": 0,
-  "start": "2026/11/12 18:26:53",
+  "start": "2026/11/13 11:10:30",
   "battle": true
  }
 ];
-const RECENT = [{"t": "11/12 11:08", "title": "ディスプレイ水槽"}, {"t": "11/12 08:38", "title": "脆弱チェッカー"}, {"t": "11/11 00:20", "title": "飲みゲー横丁"}, {"t": "11/10 15:51", "title": "Word Spell Master"}, {"t": "11/09 08:34", "title": "サッと家計簿"}];
+const RECENT = [{"t": "11/13 14:30", "title": "Word Spell Master"}, {"t": "11/13 14:29", "title": "Your Persona"}, {"t": "11/12 11:08", "title": "ディスプレイ水槽"}, {"t": "11/12 08:38", "title": "脆弱チェッカー"}, {"t": "11/11 00:20", "title": "飲みゲー横丁"}];

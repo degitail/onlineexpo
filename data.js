@@ -93,8 +93,8 @@ const APPS = [
   "yt": "",
   "url": "https://apps.apple.com/us/app/%E3%83%9E%E3%82%A4%E5%B0%B1%E6%B4%BB%E3%83%8E%E3%83%BC%E3%83%88/id6822704891",
   "sns": "kanrininh",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.54,
   "start": "2026/11/08 12:17:32",
   "battle": true
  },
@@ -206,4 +206,4 @@ const APPS = [
   "battle": true
  }
 ];
-const RECENT = [{"t": "11/13 14:30", "title": "Word Spell Master"}, {"t": "11/13 14:29", "title": "Your Persona"}, {"t": "11/12 11:08", "title": "ディスプレイ水槽"}, {"t": "11/12 08:38", "title": "脆弱チェッカー"}, {"t": "11/11 00:20", "title": "飲みゲー横丁"}];
+const RECENT = [{"t": "11/14 17:45", "title": "マイ就活ノート"}, {"t": "11/13 14:30", "title": "Word Spell Master"}, {"t": "11/13 14:29", "title": "Your Persona"}, {"t": "11/12 11:08", "title": "ディスプレイ水槽"}, {"t": "11/12 08:38", "title": "脆弱チェッカー"}];

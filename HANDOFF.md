@@ -168,3 +168,5 @@
 ## 2026-11-13（Claude Code）
 - reviews.csv：未講評4作品（脆弱チェッカー、CourtDeck、Your Persona、3コマ食堂）の AI講評を記入。ChatGPT は Codex CLI（依頼文 prompt3.txt、出力 out3.txt、追記 add_reviews3.py は work\_codex_review\）
 - 次：UI/UX改善案10個を提示済み、選択待ち
+- 一覧カードの動画：画面に6割入ったときだけ再生→画面に入ったら自動再生に（apps.js）。止まっている間は1コマ目（黒画面など）しか出ず、動画サムネに見えなかったため。マウスを乗せたときの再生処理は削除
+- UI改善案10個（11/13提示）は全件却下

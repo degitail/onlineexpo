@@ -14,12 +14,10 @@ function render(list, rank) {
     if (a.imgs[0]) t.style.backgroundImage = `url(${a.imgs[0]})`;
     else t.textContent = a.title;
     if (a.video) {
-      const v = Object.assign(document.createElement("video"), { src:a.video, muted:true, loop:true, playsInline:true });
+      // 動画はサムネとして常に再生（画面外では止めて軽くする）
+      const v = Object.assign(document.createElement("video"), { src:a.video, muted:true, autoplay:true, loop:true, playsInline:true });
       t.append(v);
-      card.onmouseenter = () => v.play();
-      card.onmouseleave = () => v.pause();
-      // スマホ：画面に入ったら再生
-      new IntersectionObserver(([e]) => e.isIntersecting ? v.play() : v.pause(), { threshold:.6 }).observe(card);
+      new IntersectionObserver(([e]) => e.isIntersecting ? v.play() : v.pause()).observe(card);
     }
     if (isWeb(a)) { card.dataset.web = 1; t.insertAdjacentHTML("beforeend", `<span class="web">ブラウザで開ける</span>`); }
     if (a.battle) card.dataset.battle = 1;

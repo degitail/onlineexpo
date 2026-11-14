@@ -21,31 +21,6 @@
   });
   orbs.forEach(o => { o.x *= innerWidth - o.r * 2; o.y *= innerHeight - o.r * 2; o.el.style.width = o.el.style.height = `${o.r * 2}px`; });
 
-  // 縁：小さな四角を円周に並べ、ときどき内外に1マスずれさせてデジタルっぽくチラつかせる
-  // 丸ごとに1枚の canvas を丸の直後に置く。重なったとき、手前の丸が奥の丸の縁を隠す
-  const PX = 5, M = PX * 3; // 四角の大きさ、canvas の余白
-  orbs.forEach(o => {
-    o.cv = document.createElement("canvas");
-    o.cv.className = "edges";
-    o.cv.width = o.cv.height = Math.ceil(o.r * 2 + M * 2);
-    o.el.after(o.cv);
-    o.g = o.cv.getContext("2d");
-    o.jit = Array.from({ length: Math.ceil(o.r * 2 * Math.PI / PX) }, () => 0);
-  });
-  const edges = () => orbs.forEach(o => {
-    // canvas の左上をマス目にそろえる（ドット絵の格子が画面全体でそろう）
-    const ox = Math.floor((o.x - M) / PX) * PX, oy = Math.floor((o.y - M) / PX) * PX;
-    o.cv.style.transform = `translate(${ox}px,${oy}px)`;
-    const g = o.g, cx = o.x + o.r, cy = o.y + o.r, n = o.jit.length;
-    g.clearRect(0, 0, o.cv.width, o.cv.height);
-    g.fillStyle = "#9fd8f5"; // 背景と同じ色（style.css の --bg）。薄い水色に戻すなら #d6effb
-    o.jit.forEach((j, i) => {
-      if (Math.random() < .005) o.jit[i] = Math.floor(Math.random() * 3) - 1; // -1, 0, 1 マス
-      const a = i / n * 6.283, d = o.r + o.jit[i] * PX;
-      g.fillRect(Math.round((cx + Math.cos(a) * d) / PX) * PX - PX / 2 - ox, Math.round((cy + Math.sin(a) * d) / PX) * PX - PX / 2 - oy, PX, PX);
-    });
-  });
-
   let open = true;
   const place = o => o.el.style.transform = `translate(${o.x}px,${o.y}px)`;
   const move = () => {
@@ -59,7 +34,6 @@
       if (o.y < 0 || o.y > maxY) { o.dir = -o.dir; o.y = Math.min(Math.max(o.y, 0), maxY); }
       place(o);
     });
-    edges();
     requestAnimationFrame(move);
   };
   move();

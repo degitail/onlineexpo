@@ -169,3 +169,6 @@
 - reviews.csv：未講評4作品（脆弱チェッカー、CourtDeck、Your Persona、3コマ食堂）の AI講評を記入。ChatGPT は Codex CLI（依頼文 prompt3.txt、出力 out3.txt、追記 add_reviews3.py は work\_codex_review\）
 - 一覧カードの動画：画面に6割入ったときだけ再生→画面に入ったら自動再生に（apps.js）。止まっている間は1コマ目（黒画面など）しか出ず、動画サムネに見えなかったため。マウスを乗せたときの再生処理は削除
 - UI改善案10個（11/13提示）は3番だけ採用：作品ページの講評を最初の1文だけ表示し、残りは「続きを読む」で開く（build.py の review_html、details 要素）。他9件は却下
+- 告知スライド（A4横1枚）：入口のスクショと概要を渡し、ChatGPT（Codex CLI）が作成。work\_slide\（slide.html／slide.png／依頼文 brief.txt）。投票者向けに「抽選で3名にAmazonギフトカード1,000円分」を掲載
+- 未解決：投票者抽選の応募方法が未定（投票は匿名で連絡先がない）。サイトとコンテストルールにも未記載
+- 入口の丸の縁のドット風チラつきを撤去（ユーザー判断）。intro.js の edges と style.css の .edges 等を削除し、元の黒い枠線に戻した

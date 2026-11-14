@@ -135,7 +135,10 @@ REVIEWS = load_reviews()
 
 def review_html(a):
     r = REVIEWS.get(a["id"], {})
-    items = "".join(f'<div class="review"><h3>{who}</h3><p>{html.escape(r[who].strip())}</p></div>'
+    def body(t):  # 最初の1文だけ見せて、残りは「続きを読む」で開く
+        head, dot, rest = html.escape(t.strip()).partition("。")
+        return f'<details><summary>{head}{dot}<span class="more">続きを読む</span></summary>{rest}</details>' if rest else f'<p>{head}{dot}</p>'
+    items = "".join(f'<div class="review"><h3>{who}</h3>{body(r[who])}</div>'
                     for who in ("Claude Code", "ChatGPT") if r.get(who, "").strip())
     return f'<section class="reviews"><h2>AI講評</h2>{items or "<p>講評準備中</p>"}</section>'
 

@@ -56,6 +56,10 @@ body.intro > :not(#intro, #bg, script) { display:none; }
 .rules th { background:var(--ink); color:var(--bg); }
 .note { font-size:12px; color:var(--sub); }
 .reviews { margin-top:40px; }
+.review summary { list-style:none; cursor:pointer; }
+.review summary::-webkit-details-marker { display:none; }
+.review .more { margin-left:.5em; text-decoration:underline; opacity:.7; }
+.review details[open] .more { display:none; }
 .review { background:var(--pale); border:2px solid var(--ink); padding:12px 16px; margin-bottom:12px; }
 .review h3 { margin:0 0 4px; font-size:15px; }
 .review p { margin:0; white-space:pre-wrap; }

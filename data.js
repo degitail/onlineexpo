@@ -13,8 +13,8 @@ const APPS = [
   "yt": "",
   "url": "https://degitail.github.io/yoshi-portfolio/",
   "sns": "https://www.threads.com/@degitaillab?igshid=NTc4MTIwNjQ2YQ==",
-  "votes": 1,
-  "pts": 0.42,
+  "votes": 2,
+  "pts": 0.68,
   "start": "2026/11/03 16:48:36",
   "battle": true
  },
@@ -206,4 +206,4 @@ const APPS = [
   "battle": true
  }
 ];
-const RECENT = [{"t": "11/14 17:45", "title": "マイ就活ノート"}, {"t": "11/13 14:30", "title": "Word Spell Master"}, {"t": "11/13 14:29", "title": "Your Persona"}, {"t": "11/12 11:08", "title": "ディスプレイ水槽"}, {"t": "11/12 08:38", "title": "脆弱チェッカー"}];
+const RECENT = [{"t": "11/17 08:47", "title": "ディスプレイ水槽"}, {"t": "11/14 17:45", "title": "マイ就活ノート"}, {"t": "11/13 14:30", "title": "Word Spell Master"}, {"t": "11/13 14:29", "title": "Your Persona"}, {"t": "11/12 11:08", "title": "ディスプレイ水槽"}];

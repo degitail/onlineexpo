@@ -11,7 +11,8 @@ function render(list, rank) {
     card.href = `w/${a.id}.html`;
     card.innerHTML = `<div class="thumb"></div><div class="body"><h3></h3><p></p><div class="tags"></div></div>`;
     const t = card.querySelector(".thumb");
-    if (a.imgs[0]) t.style.backgroundImage = `url(${a.imgs[0]})`;
+    const img = a.imgs[0] || (a.yt && `https://i.ytimg.com/vi/${a.yt}/hqdefault.jpg`);
+    if (img) t.style.backgroundImage = `url(${img})`;
     else t.textContent = a.title;
     if (a.video) {
       // 動画はサムネとして常に再生（画面外では止めて軽くする）

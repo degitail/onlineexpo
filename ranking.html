@@ -16,6 +16,8 @@
 <main>
   <h2>投票ランキング</h2>
   <div class="grid" id="grid"></div>
+  <h2>4位〜10位</h2>
+  <div class="grid" id="rest"></div>
 </main>
 
 <footer>© 2026 Degitail Expo</footer>
@@ -25,6 +27,8 @@
 <script src="count.js"></script>
 <script>
 render(APPS.filter(a => a.battle).sort((a, b) => b.pts - a.pts || b.votes - a.votes).slice(0, 10), true);
+// 上位3作品は大きく、4位以降は小さく
+document.getElementById("rest").append(...[...document.getElementById("grid").children].slice(3));
 </script>
 </body>
 </html>

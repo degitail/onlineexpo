@@ -140,12 +140,30 @@ def review_html(a):
         return f'<details><summary>{head}{dot}<span class="more">続きを読む</span></summary>{rest}</details>' if rest else f'<p>{head}{dot}</p>'
     items = "".join(f'<div class="review"><h3>{who}</h3>{body(r[who])}</div>'
                     for who in ("Claude Code", "ChatGPT") if r.get(who, "").strip())
-    return f'<section class="reviews"><h2>AI講評</h2>{items or "<p>講評準備中</p>"}</section>'
+    go = '<button class="btn" onclick="document.querySelector(&quot;.vote&quot;).click()">この作品に投票する</button>' if a["battle"] else ""
+    return f'<section class="reviews"><h2>AI講評</h2>{items or "<p>講評準備中</p>"}{go}</section>'
 
 def linkify(text):
     """本文を HTML にし、中の URL をリンクにする。全角文字（「」。など）の手前で URL を切る"""
     return re.sub(r"https?://[^\s<>\"'\u3000-\uffff]+",
                   lambda m: f'<a href="{m[0]}" target="_blank" rel="noopener">{m[0]}</a>', html.escape(text))
+
+def sns_html(v):
+    """SNSのURLを「@名前（Threads）」のような表記のリンクにする"""
+    h = html.escape
+    link = lambda href, label: f'<a href="{h(href)}" target="_blank" rel="noopener">{h(label)}</a>'
+    if re.match(r"@[\w.]{1,30}$", v):  # 「@名前」だけなら Threads のユーザー名として扱う
+        return link(f"https://www.threads.com/{v}", f"{v}（Threads）")
+    if not safe_url(v):
+        return h(v)
+    p = urllib.parse.urlparse(v)
+    host, name = p.netloc.removeprefix("www."), p.path.strip("/").split("/")[0]
+    site = {"threads.com": "Threads", "x.com": "X", "twitter.com": "X", "instagram.com": "Instagram"}.get(host)
+    return link(v, f"@{name.lstrip('@')}（{site}）" if site and name else host)
+
+def thumb(b, rel=""):
+    """一覧・OGP用のサムネURL。画像がなければYouTubeのサムネ"""
+    return rel + b["imgs"][0] if b["imgs"] else f'https://i.ytimg.com/vi/{b["yt"]}/hqdefault.jpg' if b["yt"] else ""
 
 def next_html(nxt):
     """ページの最後に置く「ほかの作品」カード"""
@@ -154,7 +172,7 @@ def next_html(nxt):
     h = html.escape
     cards = "".join(
         f'<a class="card" href="{b["id"]}.html"><div class="thumb"'
-        + (f' style="background-image:url(../{b["imgs"][0]})">' if b["imgs"] else f'>{h(b["title"])}')
+        + (f' style="background-image:url({thumb(b, "../")})">' if thumb(b) else f'>{h(b["title"])}')
         + f'</div><div class="body"><h3>{h(b["title"])}</h3><p>{h(b["short"])}</p></div></a>' for b in nxt)
     return f'<section class="next"><h2>ほかの作品も見る</h2><div class="grid">{cards}</div></section>'
 
@@ -170,14 +188,11 @@ def page(a, nxt=()):
     else:
         hero = f'<img src="../{a["imgs"][0]}" alt="">' if a["imgs"] else ""
     gallery = "".join(f'<img src="../{p}" alt="" loading="lazy">' for p in a["imgs"])
-    sns = h(a["sns"])
-    if re.match(r"@[\w.]{1,30}$", a["sns"]):  # 「@名前」だけなら Threads のユーザー名として扱う
-        sns = f'<a href="https://www.threads.com/{h(a["sns"])}" target="_blank" rel="noopener">{sns}</a>'
-    elif safe_url(a["sns"]):
-        sns = f'<a href="{sns}" target="_blank" rel="noopener">{sns}</a>'
+    sns = sns_html(a["sns"])
     vote_btn = f'<button class="btn primary vote" data-id="{a['id']}" data-title="{h(a['title'])}">投票する</button>' if a["battle"] else ""
     count = f'<span class="count" data-n="{a["votes"]}">{a["votes"]}票</span>' if a["battle"] else ""
     try_btn = f'<a class="btn primary" href="{h(a["url"])}" target="_blank" rel="noopener">体験する</a>' if a["url"] else ""
+    link_note = f'<p class="note">「体験する」のリンク先：{h(urllib.parse.urlparse(a["url"]).netloc)}</p>' if a["url"] else ""
     return f"""<!doctype html>
 <html lang="ja">
 <head>
@@ -186,7 +201,7 @@ def page(a, nxt=()):
 <title>{h(a['title'])} — Degitail Expo</title>
 <meta property="og:title" content="{h(a['title'])} — Degitail Expo">
 <meta property="og:description" content="{h(a['short'])}">
-<meta property="og:image" content="{abs_(f'media/{a["id"]}/ogp.jpg')}">
+<meta property="og:image" content="{abs_(f'media/{a["id"]}/ogp.jpg') if a["imgs"] else thumb(a)}">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="stylesheet" href="../style.css">
 </head>
@@ -198,6 +213,7 @@ def page(a, nxt=()):
   <h1>{h(a['title'])}</h1>
   <div class="meta">作者：{h(a['by'])} ／ {sns}</div>
   <p class="desc">{linkify(a['desc'])}</p>
+  {link_note}
   <div class="btns">{try_btn}{vote_btn}<a class="btn" href="{h(share)}" target="_blank" rel="noopener">Xでシェア</a></div>
   {review_html(a)}
   <div class="gallery">{gallery}</div>

@@ -53,8 +53,8 @@ const APPS = [
   "yt": "",
   "url": "https://project-cp9kg.vercel.app/",
   "sns": "@yoruwan",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.37,
   "start": "2026/11/07 20:49:54",
   "battle": true
  },
@@ -109,8 +109,8 @@ const APPS = [
   "yt": "",
   "url": "",
   "sns": "",
-  "votes": 1,
-  "pts": 0.94,
+  "votes": 2,
+  "pts": 1.35,
   "start": "2026/11/08 17:20:53",
   "battle": true
  },
@@ -206,4 +206,4 @@ const APPS = [
   "battle": true
  }
 ];
-const RECENT = [{"t": "11/17 08:47", "title": "ディスプレイ水槽"}, {"t": "11/14 17:45", "title": "マイ就活ノート"}, {"t": "11/13 14:30", "title": "Word Spell Master"}, {"t": "11/13 14:29", "title": "Your Persona"}, {"t": "11/12 11:08", "title": "ディスプレイ水槽"}];
+const RECENT = [{"t": "11/17 21:46", "title": "四柱推命 AI鑑定"}, {"t": "11/17 17:53", "title": "サッと家計簿"}, {"t": "11/17 08:47", "title": "ディスプレイ水槽"}, {"t": "11/14 17:45", "title": "マイ就活ノート"}, {"t": "11/13 14:30", "title": "Word Spell Master"}];

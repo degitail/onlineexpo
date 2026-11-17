@@ -131,8 +131,8 @@ const APPS = [
   "yt": "",
   "url": "https://nomige-yokocho-play.vercel.app",
   "sns": "calpediem_design",
-  "votes": 1,
-  "pts": 0.81,
+  "votes": 2,
+  "pts": 1.22,
   "start": "2026/11/08 21:16:06",
   "battle": true
  },
@@ -163,8 +163,8 @@ const APPS = [
   "yt": "",
   "url": "https://courtdeck.app",
   "sns": "https://www.threads.com/@nakyatsukuruapp",
-  "votes": 0,
-  "pts": 0,
+  "votes": 2,
+  "pts": 1.18,
   "start": "2026/11/12 14:50:28",
   "battle": true
  },
@@ -200,10 +200,10 @@ const APPS = [
   "yt": "",
   "url": "https://koma3-shokudo.atomfilm-kobe.chatgpt.site",
   "sns": "Threads @maiijan_ai",
-  "votes": 0,
-  "pts": 0,
+  "votes": 1,
+  "pts": 0.64,
   "start": "2026/11/13 11:10:30",
   "battle": true
  }
 ];
-const RECENT = [{"t": "11/17 21:46", "title": "四柱推命 AI鑑定"}, {"t": "11/17 17:53", "title": "サッと家計簿"}, {"t": "11/17 08:47", "title": "ディスプレイ水槽"}, {"t": "11/14 17:45", "title": "マイ就活ノート"}, {"t": "11/13 14:30", "title": "Word Spell Master"}];
+const RECENT = [{"t": "11/17 23:30", "title": "3コマ食堂"}, {"t": "11/17 23:30", "title": "CourtDeck"}, {"t": "11/17 22:54", "title": "CourtDeck"}, {"t": "11/17 22:22", "title": "飲みゲー横丁"}, {"t": "11/17 21:46", "title": "四柱推命 AI鑑定"}];
